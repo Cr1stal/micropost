@@ -1,0 +1,183 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+$grayMediumLight: #eaeaea;
+$lightGray: #999;
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* universal */
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  padding-top: 60px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+   h1 {
+  margin-bottom: 10px;
+  }
+}
+/* typography */
+
+h1, h2 h3 h4 h5 h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom:  30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: $lightGray;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+/* header*/
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  line-height: 1;
+
+  &:hover {
+    color: #F7F7F7;
+    text-decoration: none;
+  }
+}
+
+/*footer*/
+
+footer {
+  margin-top: 45px;
+  padding-top: 12px;
+  border-top: 1px solid $grayMediumLight;
+  color: $lightGray;
+  a {
+    color: gray;
+    &:hover {
+      color: darkgrey;
+    }
+  }
+  small {
+    float: left;
+  }
+  ul {
+    float: right;
+    list-style:  none;
+    li {
+      float: left;
+      margin-left: 10px;
+    }
+  }
+}
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box-sizing;
+}
+
+aside {
+  section {
+    //float: left;
+    //padding: 7px;
+    //margin: 5px;
+    //width: 25%;
+    padding: 10px 0;
+    border-top: 1px solid $gray-lighter;
+    &:first-child {
+      border: 0;
+      padding-top: 0;
+    }
+    span {
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1;
+    }
+    h1 {
+      font-size: 26px;
+      text-align: left;
+      letter-spacing: -1px;
+      margin-bottom: 3px;
+      margin-top: 0px;
+    }
+  }
+  //.r_div {
+  //  margin: 10px 5px 20px 25%;
+  //  padding: 5px;
+  //  border: 3px solid #333;
+  //}
+}
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+
+/* forms */
+.row  {
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+input {
+  height: auto !important;
+}
+
+#error_explanation {
+  color: #900;
+  ul{
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+
+.field_with_errors {
+  //@extend .control-group;
+  //@extend .error;
+}
