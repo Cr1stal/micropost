@@ -1,14 +1,7 @@
 <% provide(:title, 'Sign up') %>
 <h1>Sign up</h1>
 <div class="row">
-    <!--<form>-->
-        <!--<div><label for="nickname">Ваше имя:</label>-->
-        <!--<input type="text" id="nickname" name="nickname"></div>-->
-        <!--<div> <label for="user-email">Ваш e-mail:</label>-->
-        <!--<input type="email" id="user-email" name="user-email"></div>-->
-        <!--<div> <input type="submit" value="Sign up"></div>-->
-    <!--</form>-->
-    <div class="span6 offset3">
+    <div class="span6 offset">
         <%= form_for(@user) do |f| %>
           <%= render "shared/error_messages" %>
 
