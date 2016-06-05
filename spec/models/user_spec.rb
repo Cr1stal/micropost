@@ -11,7 +11,7 @@ describe User do
                      password: "foobarly", password_confirmation: "foobarly")
   end
 
-    subject { @user }
+  subject { @user }
 
   it {should respond_to(:name)}
   it {should respond_to(:email)}
