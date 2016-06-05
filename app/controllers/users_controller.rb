@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  def index
+
+  end
+
   def show
     @user = User.find(params[:id]) # if
   end
@@ -11,12 +15,30 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = "Welcome to the Sample app"
+      sign_in user
+      flash[:success] = "Welcome to the Sample app!"
       redirect_to @user
-      #redirect_to 'users'
     else
       render 'new'
     end
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash[:success] = "Profile update"
+      redirect_to @user
+    else
+      reder 'edit'
+    end
+  end
+
+  def destroy
+
   end
 
   private
@@ -25,7 +47,4 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
-  def destroy
-
-  end
 end

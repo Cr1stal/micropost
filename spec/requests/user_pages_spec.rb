@@ -1,8 +1,8 @@
 require 'spec_helper'
-require 'support/utilities'
+require 'utilities'
 #
-# Capybara.default_driver = :poltergeist#
-# Capybara.app_host = "http://localhost:3000"
+Capybara.default_driver = :poltergeist#
+Capybara.app_host = "http://localhost:3000"
 
 describe "User pages" do
 
@@ -34,15 +34,15 @@ describe "User pages" do
       it "should not create user" do
         expect { click_button submit }.not_to change(User, :count)
       end
-      describe "posle zaprosa na registraciu" do
+      describe "posle zaprosa na registraciu: all field are empty" do
         before { click_button submit }
         it {should have_title('Sign up')}
-        it {should have_content("The form contains 5 errors")}
-        it {should have_content( "Name can't be blank
-* Email can't be blank
-* Email is invalid
-* Password can't be blank
-* Password is too short (minimum is 6 characters)")}
+        it {should have_content("The form contains 6 errors")}
+        it {should have_content("Name can't be blank")}
+        it {should have_content("Email can't be blank")}
+        it {should have_content("Email is invalid")}
+        it {should have_content("Password can't be blank")}
+        it {should have_content("Password is too short (minimum is 6 characters)")}
       end
       describe "posle zaprosa na registraciu: diffrent pass" do
         before do
@@ -70,7 +70,7 @@ describe "User pages" do
 
     end
 
-    describe "valid info" do
+    describe "with valid info" do
       before do
         fill_in "Name",         :with => "Example User"
         fill_in "Email",        :with => "Examaple@mail.com"
@@ -82,22 +82,47 @@ describe "User pages" do
         expect { click_button submit }.to change(User, :count).by(1)
       end
 
-      describe "posle zaprosa na registraciu" do
-        let(:user) { create(:user) }
-        before { click_button submit }
-        it { should have_content('Welcome to the Sample app') }
-        it { should have_title(user.name)}
-      end
+      #it i self add
+      # describe "posle zaprosa na registraciu" do
+      #   let(:user) { create(:user) }
+      #   before { click_button submit }
+      #   it { should have_content('Welcome to the Sample app') }
+      #   it { should have_title(user.name)}
+      # end
 
       describe "posle soxranenia user'a" do
-        let(:user) { User.find_by(email: "examaple@mail.com") }
+        let(:user) { create(:user) }
         before { click_button submit }
-        it { should have_selector('div.alert.alert-success', text:'Welcome') }
+        #let(:user) { User.find_by(email: "examaple@mail.com") }
+
         it { should have_title(user.name)}
+        it { should have_link("Sign out")}
+        it { should have_selector('div.alert.alert-success', text:'Welcome to the Sample app') }
+
+        # describe 'vyzov vypadaushego menu' do
+        #   before {click_link "Account" }
+        #   it { should have_content("Sign out") }
+        #   it { should have_link("Profile") }
+        # end
       end
 
     end
+  end
 
+  describe "edit" do
+    let(:user) { FactoryGirl.create(:user)}
+    before {visit edit_user_path(user)}
+
+    describe "page" do
+      it { should have_content("Update your profile")}
+      it { should have_title("Edit user")}
+      it { should have_link("change", href: "http://gravatar.com/emails")}
+
+      describe "s oshibochnoi infoi" do
+        before {click_button "Save change"}
+        it {should have_content("error")}
+      end
+    end
   end
 
 end
