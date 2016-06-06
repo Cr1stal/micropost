@@ -81,7 +81,7 @@ describe "Autentifikacia" do
           it{should have_title("Sign in")}
         end
 
-        describe "popytka izmenit date" do
+        describe "popytka izmenit info" do
           before{patch user_path(user)}
           specify{expect(response).to redirect_to(signin_path)}
         end
@@ -110,6 +110,15 @@ describe "Autentifikacia" do
       end
     end
 
+    describe "kak ne admin" do
+      let(:user) {FactoryGirl.create(:user)}
+      let(:non_admin) {FactoryGirl.create(:user)}
+      before{sign_in non_admin, no_capybara: true}
+      describe "popytka otoslat zapros DESTROY cheerez User#destroy deistvie" do
+        before{delete user_path(user)}
+        specify{expect(response).to redirect_to(root_url)}
+      end
+    end
   end
 end
 
