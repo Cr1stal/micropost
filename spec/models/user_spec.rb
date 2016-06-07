@@ -1,25 +1,41 @@
 require 'spec_helper'
+require "utilities"
+
+Capybara.default_driver = :poltergeist#
+Capybara.app_host = "http://localhost:3000"
 
 describe User do
 
   before do
-    @user = User.new(name: "Example user", email: "user@maiil.com",
+    @user = User.new(name: "Example user", email: "user@mail.com",
                      password: "foobarly", password_confirmation: "foobarly")
   end
 
-    subject { @user }
+  subject { @user }
 
-  it { should respond_to(:name)}
-  it { should respond_to(:email)}
-  it { should respond_to(:password_digest)}
+  it {should respond_to(:name)}
+  it {should respond_to(:email)}
+  it {should respond_to(:password_digest)}
 
   it {should respond_to(:password)}
   it {should respond_to(:password_confirmation)}
 
-  it { should be_valid }
+  #it { should respond_to(:authenticate) }
+  it {should respond_to(:password_confirmation)}
+  it {should respond_to(:remember_token)}
+  it {should respond_to(:authenticate)}
+  it {should respond_to(:admin)}
 
-  it { should respond_to(:authenticate) }
+  it {should be_valid}
+  it {should_not be_admin}
 
+  describe "s admin atrr. set 'true'" do
+    before do
+      @user.save!
+      @user.toggle!(:admin)
+    end
+    it {should be_admin}
+  end
   describe 'when name is not present' do
     before { @user.name = " " }
     it { should_not be_valid }
@@ -63,7 +79,7 @@ describe User do
     end
   end
 
-  describe "whe email addres is already taken" do
+  describe "when email addres is already taken" do
       before do
         user_with_same_email = @user.dup
         user_with_same_email.email = @user.email.upcase
@@ -105,6 +121,12 @@ describe User do
       specify { expect(user_for_invalid_password).to be_false } # false
     end
 
+  end
+
+  describe "pomnit' token" do
+    before { @user.save }
+    #its(:remember_token) { should_not be_blank}
+    it { expect(@user.remember_token).not_to be_blank}
   end
 
 end

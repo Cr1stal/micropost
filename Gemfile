@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
-
+ruby '2.2.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~>4.2.3'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+#gem 'sqlite3'
 # Use SCSS for stylesheets
-#gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -26,16 +26,21 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'httparty'
 
 gem 'bootstrap-sass', '~> 3.3.6'
-gem 'sass-rails', '>= 3.2'
+#gem 'sass-rails', '>= 3.2'
 
 # Use ActiveModel has_secure_password
  gem 'bcrypt', '~> 3.1.7'
 
+gem "faker"
+gem "will_paginate"
+gem "bootstrap-will_paginate"
+gem 'pg', '>= 0.15.1'
+gem 'rails_12factor', '>= 0.0.2'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
 # Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+ gem 'capistrano-rails', group: :development
 
 # Access an IRB console on exception pages or by using <%= console %> in views
 gem 'web-console', '~> 2.1', group: :development
@@ -70,6 +75,5 @@ group :test do
 end
 
 group :production do
-  gem 'pg', '>= 0.15.1'
-  gem 'rails_12factor', '>= 0.0.2'
+
 end

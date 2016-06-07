@@ -1,8 +1,8 @@
-require 'support/utilities'
+require 'utilities'
 require "spec_helper"
 
-# Capybara.default_driver = :poltergeist
-# Capybara.app_host = "http://localhost:3000"
+Capybara.default_driver = :poltergeist
+Capybara.app_host = "http://localhost:3000"
 
 describe "StaticPages" do
 
