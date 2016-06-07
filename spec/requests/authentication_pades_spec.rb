@@ -86,7 +86,7 @@ describe "Autentifikacia" do
           specify{expect(response).to redirect_to(signin_path)}
         end
 
-        describe "pocechenie user index" do
+        describe "posechenie user index" do
           before{visit users_path}
           it{should have_title("Sign in")}
         end
