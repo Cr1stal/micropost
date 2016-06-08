@@ -114,12 +114,18 @@ footer {
   margin-top: 45px;
   @include box-sizing;
 }
+/* sidebar */
 
-aside {
+.span4 {
+  width: 30%;
+  float: left;
+}
+
+aside {  
   section {
-    float: left;
+    //float: left;
     //margin: 5px;
-    width: 25%;
+
     padding: 10px 0;
     border-top: 1px solid #989898;
     &:first-child {
@@ -140,16 +146,44 @@ aside {
     }
   }
 }
+
+.stats {
+  overflow: auto;
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid lavender;
+    color: gray;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: blue;
+    }
+  }
+  strong {
+    display: block;
+  }
+}
   .r_div {
-   margin: 10px 5px 20px 25%;
+    //margin-left: 24%;
+    width: 67%;
+    float: right;
+   margin: 10px 5px 20px ;
    padding: 5px;
    border: 3px solid #333;
   }
 
-.gravatar {
-  //float: left;
-  margin-right: 10px;
-  margin-bottom: 12px;
+.user_avatar {
+    overflow: auto;
+    margin-top: 10px;
+    .gravatar {
+      //float: left;
+      margin-right: 10px;
+      margin-bottom: 12px;
+    }
 }
 
 /* forms */
@@ -199,5 +233,33 @@ input {
     &:last-child {
       border-bottom: 1px solid lightgrey;
     }
+  }
+}
+
+/* microposts */
+
+.microposts {
+  list-style: none;
+  margin: 10px 0 0 0;
+
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+}
+.content {
+  display: block;
+}
+.timestamp {
+  color: lightgrey;
+}
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+aside {
+  textarea {
+    height: 100px;
+    margin-bottom: 5px;
   }
 }

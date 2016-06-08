@@ -29,7 +29,7 @@ describe "Autentifikacia" do
           it { should_not have_selector("div.alert.alert-error")}
         end
       end
-  end
+
 
     describe "validnyi vxod" do
       let(:user) { FactoryGirl.create(:user)}
@@ -51,7 +51,7 @@ describe "Autentifikacia" do
         it {should have_link("Sign in")}
       end
     end
-
+  end
 
   describe "authorization" do
 
@@ -71,28 +71,39 @@ describe "Autentifikacia" do
             expect(page).to have_title("Edit user")
           end
         end
-
       end
 
-      describe "v users controllere" do
+        describe "v users controllere" do
 
-        describe "visiting edit page" do
-          before {visit edit_user_path(user)}
-          it{should have_title("Sign in")}
+          describe "visiting edit page" do
+            before {visit edit_user_path(user)}
+            it{should have_title("Sign in")}
+          end
+
+          describe "popytka izmenit info" do
+            before{patch user_path(user)}
+            specify{expect(response).to redirect_to(signin_path)}
+          end
+
+          describe "posechenie user index" do
+            before{visit users_path}
+            it{should have_title("Sign in")}
+          end
         end
 
-        describe "popytka izmenit info" do
-          before{patch user_path(user)}
-          specify{expect(response).to redirect_to(signin_path)}
+
+      describe "in the Relationships controller" do
+        describe "submitting to the create action" do
+          before { post relationships_path }
+          specify { expect(response).to redirect_to(signin_path) }
         end
 
-        describe "posechenie user index" do
-          before{visit users_path}
-          it{should have_title("Sign in")}
+        describe "submitting to the destroy action" do
+          before { delete relationship_path(1) }
+          specify { expect(response).to redirect_to(signin_path) }
         end
       end
     end
-
     describe "kak ne pravilnyi user" do
       let(:user) {FactoryGirl.create(:user)}
       let(:wrong_user) {FactoryGirl.create(:user, email: "wrong@example.com")}

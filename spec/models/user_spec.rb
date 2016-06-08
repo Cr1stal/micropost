@@ -26,6 +26,11 @@ describe User do
   it {should respond_to(:authenticate)}
   it {should respond_to(:admin)}
   it {should respond_to(:microposts)}
+  it { should respond_to(:feed) }
+  it { should respond_to(:relationships) }
+  it { should respond_to(:followed_users) }
+  it { should respond_to(:following?) }
+  it { should respond_to(:follow!) }
 
   it {should be_valid}
   it {should_not be_admin}
@@ -142,6 +147,30 @@ describe User do
 
     it "should have the right microposts in the right order" do
       expect(@user.microposts.to_a).to eq [newer_micropost, older_micropost]
+    end
+
+    describe "status" do
+      let(:unfollowed_post) do
+        FactoryGirl.create(:micropost, user: FactoryGirl.create(:user))
+        end
+
+      before do
+        @user.follow!(followed_user)
+        3.times {followed_user.microposts.create!(content: "Something else")}
+      end
+
+      it{expect(@user.feed).to include(newer_micropost) }
+      #its(:feed) { should include(older_micropost) }
+      it {expect(@user.feed).to include(older_micropost) }
+      it {expect(@user.feed).not_to include(unfollowed_post) }
+      it "something "do
+        expect do
+          @user.followed_user
+        end
+      end
+
+      it {expect(followed_user_microposts).to all be_in(@user.feed)  }
+      #its(:feed) {followed_user.microposts.each { |micropost|  should include(micropost) }  }
     end
   end
 
