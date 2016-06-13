@@ -136,6 +136,7 @@ GEM
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
+    puma (3.4.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -256,6 +257,7 @@ DEPENDENCIES
   pg (>= 0.15.1)
   phantomjs (>= 1.9.8.0)
   poltergeist (>= 1.9.0)
+  puma
   rails (~> 4.2.3)
   rails_12factor
   rspec-rails
