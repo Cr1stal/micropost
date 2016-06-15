@@ -118,14 +118,16 @@ footer {
 
 .span4 {
   width: 30%;
-  float: left;
+  //float: left;
 }
 
-aside {  
+aside {
+  display: block;
+  float: left;
   section {
-    //float: left;
-    //margin: 5px;
 
+    //margin: 5px;
+    //display: block;
     padding: 10px 0;
     border-top: 1px solid #989898;
     &:first-child {
@@ -168,10 +170,10 @@ aside {
   }
 }
   .r_div {
-    //margin-left: 24%;
+    margin-top: 0px;
     width: 67%;
     float: right;
-   margin: 10px 5px 20px ;
+   //margin: 10px 5px 20px ;
    padding: 5px;
    border: 3px solid #333;
   }
