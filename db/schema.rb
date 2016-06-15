@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160608102104) do
+ActiveRecord::Schema.define(version: 20160614210943) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "images", force: :cascade do |t|
+    t.string   "name"
+    t.string   "file"
+    t.integer  "micropost_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "images", ["micropost_id"], name: "index_images_on_micropost_id", using: :btree
 
   create_table "microposts", force: :cascade do |t|
     t.string   "content"
@@ -20,14 +33,7 @@ ActiveRecord::Schema.define(version: 20160608102104) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
-
-  create_table "posts", force: :cascade do |t|
-    t.string   "title"
-    t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+  add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at", using: :btree
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id"
@@ -53,4 +59,7 @@ ActiveRecord::Schema.define(version: 20160608102104) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
+  
+
+  add_foreign_key "images", "microposts"
 end
