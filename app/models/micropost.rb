@@ -6,6 +6,10 @@ class Micropost < ActiveRecord::Base
   default_scope -> { order("created_at DESC")}
   validates :content, presence: true, length: {in: 1..140}
   validates :user_id, presence: true
+  acts_as_taggable
+  acts_as_taggable_on  :name, :tag_list, :tags
+  #
+
 
   def self.from_users_followed_by(user)
     #followed_user_ids = user.followed_user_ids

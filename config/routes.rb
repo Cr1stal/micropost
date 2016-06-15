@@ -9,11 +9,9 @@ end
 resources :tags, only: [:index, :show]
 resources :sessions, only: [:new, :create, :destroy]
 resources :relationships, only: [:create, :destroy]
-resources :microposts, only: [:create, :destroy] do
-  #image do
+resources :microposts, only: [:create, :destroy] #do
   #resources :images
-    #end
-end
+#end
 root  to: 'static_pages#home'
 match '/signup',    to: 'users#new',              via: :get
 match '/signin',    to: 'sessions#new',           via: :get
@@ -26,7 +24,8 @@ match '/contact',   to: 'static_pages#contact',   via: :get
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+
+  #root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

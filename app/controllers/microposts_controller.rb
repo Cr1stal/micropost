@@ -1,20 +1,19 @@
 class MicropostsController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
   before_action :correct_user, only: :destroy
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  
+  def index
+    @microposts = Micropost.all
+  end
 
-  # def index
-  #   @microposts = Micropost.all
-  # end
+  def show
+    @images = @micropost.images.find(params[:id])
+  end
 
-  # def show
-  #   @images = Micropost.images.find(params[:id])
-  # end
-
-  # def new
-  #   @micropost = Micropost.new
-  #   @image = @micropost.images.build
-  # end
+  def new
+    @micropost = Micropost.new
+    @image = @micropost.images.build
+  end
 
 
   def create

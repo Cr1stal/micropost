@@ -41,6 +41,9 @@ gem 'puma'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
 # Use Capistrano for deployment
  gem 'capistrano-rails', group: :development
 
