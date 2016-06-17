@@ -20,7 +20,9 @@ class MicropostsController < ApplicationController
     #render plain: params[:micropost].inspect
     @micropost = current_user.microposts.build(micropost_params) # unless micropost_params.blank?
     if @micropost.save # && !@micropost.content.empty?
-      @image = @micropost.images.create!(:file => @micropost.images, :micropost_id => @micropost.id)
+	params[:images]['image'].each do |image|
+          @micropost.images.create!(:image => image, :micropost_id => @micropost.id)
+        end
       flash[:success] = "Micropost created!"
       redirect_to root_url
     else
@@ -37,8 +39,7 @@ class MicropostsController < ApplicationController
   private
 
     def micropost_params
-      params.require(:micropost).permit(:content, :tag_list, images_attributes: [:id, :micropost_id, :file])
-      #params.require(:micropost).permit(:content, :name, :tag_list, :image) # [:id, :micropost_id, :file]:file, :name,
+      params.require(:micropost).permit(:content, :tag_list)
     end
 
     def correct_user

@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.2.5'
+ruby '2.2.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~>4.2.3'
@@ -27,23 +27,22 @@ gem 'httparty'
 
 gem 'bootstrap-sass', '~> 3.3.6'
 #gem 'sass-rails', '>= 3.2'
+gem 'acts-as-taggable-on', '~> 3.4'
 
 # Use ActiveModel has_secure_password
- gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 gem "faker"
 gem "will_paginate"
 gem "bootstrap-will_paginate"
 gem 'pg', '>= 0.15.1'
 gem 'rails_12factor'
-
-gem 'puma'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'fog'
+gem "fog"
 # Use Capistrano for deployment
  gem 'capistrano-rails', group: :development
 
@@ -80,5 +79,5 @@ group :test do
 end
 
 group :production do
-
+  gem 'puma'
 end

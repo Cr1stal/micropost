@@ -12,13 +12,13 @@ default: &default
   pool: 5
 
 development:
-adapter: postgresql
-encoding: unicode
-host: localhost
-pool: 5
-database: my_app
-username: appler
-password: Ho1wa!l
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  pool: 5
+  database: my_app
+  username: appler
+  password: Ho1wa!l
 
 
   # The specified database role being used to connect to postgres.
@@ -56,12 +56,12 @@ test:
 #  database: db/test.sqlite3
 #  pool: 5
 #  timeout: 5000
-adapter: postgresql
-encoding: unicode
-host: localhost
-pool: 5
-username: appler
-password: Ho1wa!l
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  pool: 5
+  username: appler
+  password: Ho1wa!l
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is

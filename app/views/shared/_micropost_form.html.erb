@@ -1,13 +1,13 @@
-<%= form_for(@micropost) do |f| %>
-<%= render 'shared/error_messages', object: f.object %>
-<div class="field">
-    <%= f.text_area :content, placeholder: "Compose new micropost.." %>
-</div>
+<%= form_for(@micropost, :html => { :multipart => true }) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+    <div class="field">
+      <%= f.text_area :content, placeholder: "Compose new micropost.." %>
+    </div>
     <%#= render 'images/form', f.image%>
-    <%= f.fields_for @image do |p| %>
+    <%= f.fields_for :images do |p| %>
         <div class="field">
-            <%= p.label :file %><br>
-            <%= p.file_field :file, :multiple => true, name: "images[file][]" %>
+            <%= p.label :image %><br>
+            <%= p.file_field :image, :multiple => true, name: "images[image][]" %>
         </div>
     <% end %>
     <%= f.submit "Post", class: "btn btn-large btn-primary" %>

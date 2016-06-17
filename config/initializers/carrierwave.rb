@@ -5,5 +5,5 @@ CarrierWave.configure do |config|
       :google_storage_secret_access_key => Rails.application.secrets.google_storage_secret_access_key
 
   }
-  config.fog_directory = 'evhene_ch'
+  config.fog_directory = 'ss-test-segment'
 end
